@@ -32,6 +32,7 @@ for i in range(10000):
 print("\nSee what files have been created")
 input("continue?")
 import subprocess
+
 subprocess.call("ls -l logs/rotation*", shell=True)
 
 print("\nInspect the last few lines of current logfile")

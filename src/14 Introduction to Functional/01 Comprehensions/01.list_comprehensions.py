@@ -21,7 +21,7 @@ def cube(x):
 
 # set up a sequence
 sequence = list(range(1, 20))
-
+print(sequence)
 # apply a comprehension to entire sequence
 roots = [sqrt(x) for x in sequence]
 print(roots)

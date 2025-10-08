@@ -9,7 +9,7 @@ The accompanying file: add.py contains:
 
     x = 100
     for i in range(1000):
-        x += 1
+        x += 1 #+= was not thread safe because it has more than one bytecode 
 
     print(x)
 
