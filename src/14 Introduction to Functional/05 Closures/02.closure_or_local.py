@@ -29,12 +29,13 @@ def main():
 
     def f():
         # note y1 and y2 are locals, not closures, because  str's are immutable and used as l-values
-        # y3 is used as an r-value and is therefore part of the closure
-        print(f"f symbol table: {list(locals().keys())}")
+        # y3 is used as an r-value (read)and is therefore part of the closure
+        print(f"f symbol table: {list(locals().keys())}") # A - why is y3 part of this list even though it is only called after ?
         x1[0] = "fx1"
         x2[0] = "fx2"
         y1 = "fy1"
-        y2 = y3
+        y2 = y3 
+        print(f"f symbol table NEW: {list(locals().keys())}")
     f()
     print(f"function f:0x{id(f):x}")
     displayClosures(f)

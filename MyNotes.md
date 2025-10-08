@@ -6,6 +6,9 @@
 - anaconda depreciated at diamond because of a paywall now use conda to install python 
 - use time.sleep to run pieces of code concurrently 
 - id() tells you where the object is in memory 
+- l value is what appears on left hand side of equals and r value is what appears on rhs of '='
+- print(f"main symbol table: {list(locals().keys())}")
+Use above to list aout all symbols 
 
 ## Debugger 
 - F5 to start debugger from the start 
@@ -35,6 +38,12 @@ Threading - allows you to run code concurrently
 If you add a __str__ then you can print out a desc of your object ! 
 use dir() to get all methods of a class 
 variables traverses the dictionary from lowest (object) to highest (class) see the oop-revision file you made 
+
+Association - Uses A 
+Aggregation - Has A 
+Inheritance - Is A 
+
+When inheriting from a base class you can either do BaseClass.__init__() OR super.__init__
 
 ## List comprehension 
     list        [ fn(item) for item in sequence ]
@@ -73,5 +82,51 @@ Python created generators.  Generators are a special type of iterator.  A genera
 that uses the "yield" instruction.
 
 Can use g.__next__() or next(g) -> this is the same thing 
+(g is generator above)
 
 Iterators don't have to return self while generators do 
+
+Difference between an iterable and iterator is just that iterable has the next() method 
+To stop iteration without error: 
+```python
+except StopIteration as e:
+        break
+```
+
+## lambda funcs
+introduced because they were in C and ppl wanted it in python 
+
+SYNTAX
+lambda in:out
+
+filter: 
+```python 
+sequence = [5, 7, 9, 2, 4, 6]
+result = filter (lambda x: x > 4, sequence) 
+```
+
+* you can use lambdas to pass into other funcs as parameters because it is technically an expression 
+
+## scope 
+The letters in the acronym LEGB stand for Local, Enclosing, Global, and Built-in scopes. 
+
+```python 
+sum = 99        # global scope
+
+def outer():
+    sum = 88    # enclosing scope
+    def inner():
+        sum = 77  # local scope
+        print(sum)
+    inner()
+
+outer()
+```
+
+## partial funcs 
+these let you add some parameters and then add the rest later . 
+
+
+## closures
+use displayClosures()
+you can add an immutable type to local variable using ```nonlocal x``` (see gotcha 6)

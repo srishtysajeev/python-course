@@ -19,6 +19,6 @@ reduce (lambda        :40320,            40320)
 
 from functools import reduce
 
-product = reduce (lambda x, y: x*y, [2,3,4,5,6,7,8])
+product = reduce (lambda x, y: x*y, [2,3,4,5,6,7,8]) #just multiplying everything togthr
 print(product)
 
