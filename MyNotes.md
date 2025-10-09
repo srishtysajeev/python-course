@@ -3,13 +3,57 @@
 - Website to see the most popular languages: https://www.tiobe.com/tiobe-index/ 
 - Interpretter goes line by line to machine code but compiler does the whole thing first 
 - Python acts as a compiler and imterpretter = slow 
+- Use multiple processes if CPU intensive and multiple threads if IO intensive (not sure if that's the right way around )
 - anaconda depreciated at diamond because of a paywall now use conda to install python 
 - use time.sleep to run pieces of code concurrently 
 - id() tells you where the object is in memory 
 - l value is what appears on left hand side of equals and r value is what appears on rhs of '='
 - print(f"main symbol table: {list(locals().keys())}")
+- polars is pandas but written in rust and it is meant to be much faster and like a sql database (not good with delimiters)
 Use above to list aout all symbols 
+- numpy arange is for an array range 
+- To run python on multiple CPUs
+```Python 
 
+
+@numba.jit(nopython=True, parallel=False)
+def forLoopWithNumba(n):
+    _sum = 0
+    for i in range(n):
+        _sum += float(i)**0.5
+    return _sum
+```
+- Cython is the same as python but you just have to define your types at the top (40 - 50x faster than python ) -> converts to c code under the hood 
+### numpy 
+- np.array is much faster than normal arrays 
+- np.arange is better than range because it can deal with floats 
+
+- with np.linspace you get equal spacing and it includes the last number 
+
+- can use np.reshape to reshape you array eg to a 3D one. 
+
+```python 
+# create array
+a = np.arange(24); print(a)
+# reshape it
+b = a.reshape(2,3,4); print(b)
+a[13] = 99
+print(a)
+print(b)
+# display some properties held in the view
+print(type(b))
+print("Shape:", b.shape)
+print("Dimensions:", b.ndim)
+print("Size:", b.size)
+print("Item type:", b.dtype.name)
+print("Item size:", b.itemsize)
+```
+# dot and cross product
+a = np.array( [[ 2,4], [3,5]] )
+b = np.array( [[ 0,1], [1,0]] )
+c = np.dot(a,b); print(c)
+c = np.cross(a,b); print(c)
+```
 ## Debugger 
 - F5 to start debugger from the start 
 - Can edit the launch.json in .vscode to customise 
