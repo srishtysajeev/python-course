@@ -46,6 +46,7 @@ async def main2():
     task1 = asyncio.create_task(coroutine1())
     task2 = asyncio.create_task(coroutine2())
     task3 = asyncio.create_task(coroutine3())
+    #await task1, task2, task3 --- IGNORE ---
     await task1
     await task2
     await task3

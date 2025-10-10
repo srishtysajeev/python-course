@@ -13,7 +13,7 @@ the function (as discussed in the section on generators).
 import asyncio
 import time
 
-# this is a coroutine (related to a generator)
+# this is a coroutine (related to a generator) aka a two way generator as n is taking an input 
 def main():
     while(True):
         time.sleep(1)
@@ -26,4 +26,5 @@ print(type(cr))
 for n in range(10):
     next(cr)
     print(cr.send(n), end=", ")
+    next(cr)
 

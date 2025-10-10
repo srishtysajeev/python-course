@@ -15,6 +15,7 @@ to enable the locking to operate.
 import multiprocessing as mp
 import time
 import random
+import os 
 
 def fn(lock):
     for n in range(10):

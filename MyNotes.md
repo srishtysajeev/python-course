@@ -1,18 +1,26 @@
 # Notes 
 
 - Website to see the most popular languages: https://www.tiobe.com/tiobe-index/ 
+- in functional programming everything is immutable 
 - Interpretter goes line by line to machine code but compiler does the whole thing first 
 - Python acts as a compiler and imterpretter = slow 
 - Use multiple processes if CPU intensive and multiple threads if IO intensive (not sure if that's the right way around )
 - anaconda depreciated at diamond because of a paywall now use conda to install python 
 - use time.sleep to run pieces of code concurrently 
+- when we use something like linux we are actually using virtual rather than real memory - the amount of space in the virtual will be much less than real and it is then saved to disk so both can see the data..
 - id() tells you where the object is in memory 
 - l value is what appears on left hand side of equals and r value is what appears on rhs of '='
 - print(f"main symbol table: {list(locals().keys())}")
 - polars is pandas but written in rust and it is meant to be much faster and like a sql database (not good with delimiters)
 Use above to list aout all symbols 
+- ```with``` python -> context manager. under covers will create a try finally to close the pool (usually used with I/O stasks)
 - numpy arange is for an array range 
-- To run python on multiple CPUs
+- To run python on multiple CPUs use Processes.join
+- 
+- A process is an entire executing program with its own memory space and resources, while a thread is a smaller unit of execution within a process that shares the process's resources
+- quicker to do context switch with threads. threads are good if you have similar parts of a program you want to run concurrently. have to use processes if you want completely diff programs to run concurrently. 
+coroutine is a two way generator 
+- threading is not recommended in python (with the current version)
 ```Python 
 
 
@@ -174,3 +182,53 @@ these let you add some parameters and then add the rest later .
 ## closures
 use displayClosures()
 you can add an immutable type to local variable using ```nonlocal x``` (see gotcha 6)
+
+## Asincio 
+
+Uses Corouties 
+The asyncio module uses new style coroutines.  These are defined as a function prepended by the async keyword.
+Coroutines are a type of generator and like generators you need to call them to create the actual coroutine.
+Level 3/09 AsyncIO/04.tasks.py
+```python
+async def main(): # wrong (does each sequentially)
+    await coroutine1()
+    await coroutine2()
+    await coroutine3()
+
+async def main2(): # right way (does in parallel )
+    task1 = asyncio.create_task(coroutine1())
+    task2 = asyncio.create_task(coroutine2())
+    task3 = asyncio.create_task(coroutine3())
+    await task1
+    await task2
+    await task3
+```
+
+So you have input output bound tasks where you give a program an input and you are waiting for an out put for example connecting to a website and then you have CPU intensive tasks which is are tasks that take a lot of processing power. 
+
+
+## type hints 
+types languages like C are much faster! 
+
+Use mypy to check that your type hints work and that therea re no errors 
+
+## matplotlib 
+use tightlayout to prevent slots from overlapping 
+
+## HDF5 
+Basically a concept where you divide a file into it's own subdirectory and so you only load the bit you need into memory - not clogging up the whole file system. 
+
+## Other 
+Can run linux commands  using subprocess: 
+```python 
+import subprocess
+try:
+    subprocess.run("module load dawn; dawn")
+except:
+    print("you must be on a Diamond machine to run 'dawn'")
+```
+
+quick way to write a func 
+```python
+def f1(self): print("this is f1()")
+```

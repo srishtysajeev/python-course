@@ -44,7 +44,7 @@ m3 = MyClass()
 # define a callback target as an object
 t1 = Thread(target = m1, args = ("1",))
 t2 = Thread(target = m2, args = ("2",))
-t3 = Thread(target = m3, args = ("3",))
+t3 = Thread(target = m3, args = ("5",))
 
 # create the worker threads
 t1.start()
